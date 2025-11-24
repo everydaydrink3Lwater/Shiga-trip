@@ -6,7 +6,7 @@
     <title>秋之近江：滋賀賞楓一日遊</title>
     <style>
         :root {
-            /* 日式配色 */
+            /* 日式極簡配色 */
             --bg-color: #fcfaf2;   /* 和紙白 */
             --sidebar-bg: #f4f1ea; /* 淺米色 */
             --text-main: #3d3d3d;  /* 墨黑 */
@@ -16,9 +16,7 @@
             --border-color: #e0ded5;
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         body {
             font-family: "Hiragino Kaku Gothic ProN", "Yu Mincho", "Helvetica Neue", serif;
@@ -34,7 +32,7 @@
 
         /* 左側選單 (Sidebar) */
         .sidebar {
-            width: 260px;
+            width: 240px;
             background-color: var(--sidebar-bg);
             border-right: 1px solid var(--border-color);
             display: flex;
@@ -47,11 +45,12 @@
         .logo {
             padding: 0 20px 20px 20px;
             font-weight: bold;
-            font-size: 1.2em;
+            font-size: 1.1em;
             color: var(--accent-red);
             border-bottom: 1px solid var(--border-color);
             margin-bottom: 10px;
             letter-spacing: 1px;
+            text-align: center;
         }
 
         .nav-btn {
@@ -65,6 +64,7 @@
             transition: all 0.3s ease;
             font-family: inherit;
             border-left: 4px solid transparent;
+            outline: none;
         }
 
         .nav-btn:hover {
@@ -88,12 +88,13 @@
             position: relative;
         }
 
-        /* 內容卡片樣式 */
+        /* 內容區塊樣式 */
         .section {
             display: none; /* 預設隱藏 */
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
             animation: fadeIn 0.4s ease;
+            padding-bottom: 50px;
         }
 
         .section.active {
@@ -101,7 +102,7 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(5px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
@@ -117,4 +118,128 @@
             color: var(--accent-red);
             margin-top: 0;
             border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 1.1em;
+            margin-top: 25px;
+            color: var(--text-main);
+            border-left: 3px solid var(--accent-gold);
+            padding-left: 10px;
+        }
+
+        p, li {
+            line-height: 1.8;
+            color: #4a4a4a;
+        }
+
+        ul { padding-left: 20px; }
+
+        .tag {
+            display: inline-block;
+            background: #eee;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            margin-right: 5px;
+            color: #555;
+        }
+
+        .highlight-box {
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .price-table td {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .price-table .price {
+            text-align: right;
+            font-weight: bold;
+        }
+        
+        .total-price {
+            font-size: 1.5em;
+            color: var(--accent-red);
+            text-align: right;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        /* 手機版響應式設計 */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column; /* 改為上下排列 */
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+                flex-direction: row; /* 選單改為橫向滑動 */
+                overflow-x: auto;
+                overflow-y: hidden;
+                padding: 10px 0;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                white-space: nowrap;
+            }
+
+            .logo { display: none; } /* 手機版隱藏 Logo 節省空間 */
+
+            .nav-btn {
+                padding: 10px 15px;
+                font-size: 0.9em;
+                border-left: none;
+                border-bottom: 3px solid transparent;
+            }
+
+            .nav-btn.active {
+                border-left: none;
+                border-bottom: 3px solid var(--accent-red);
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 左側導覽列 -->
+    <nav class="sidebar">
+        <div class="logo">秋之近江</div>
+        <button class="nav-btn active" onclick="showSection('cover')">行程</button>
+        <button class="nav-btn" onclick="showSection('transport')">交通</button>
+        <button class="nav-btn" onclick="showSection('lunch')">午餐</button>
+        <button class="nav-btn" onclick="showSection('spot1')">日吉大社</button>
+        <button class="nav-btn" onclick="showSection('snack')">特色小食 & 散步</button>
+        <button class="nav-btn" onclick="showSection('spot2')">石山寺</button>
+        <button class="nav-btn" onclick="showSection('dinner')">晚餐</button>
+        <button class="nav-btn" onclick="showSection('return')">回程</button>
+        <button class="nav-btn" onclick="showSection('budget')">預算</button>
+    </nav>
+
+    <!-- 右側內容區 -->
+    <main class="main-content">
+        
+        <!-- 1. 行程封面 -->
+        <div id="cover" class="section active">
+            <div style="text-align: center; padding-top: 50px;">
+                <h1 style="color: var(--accent-red);">秋之近江</h1>
+                <p style="font-size: 1.2em; color: #666;">滋賀縣紅葉與美食散策</p>
+                <div style="margin: 30px 0; border-top: 1
