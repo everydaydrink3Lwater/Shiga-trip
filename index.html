@@ -6,335 +6,115 @@
     <title>秋之近江：滋賀賞楓一日遊</title>
     <style>
         :root {
-            --primary-red: #c92a2a; /* 楓葉紅 */
-            --bg-color: #fdfbf7; /* 米白色背景 */
-            --card-bg: #ffffff;
-            --text-dark: #333333;
-            --text-light: #666666;
-            --accent-gold: #d97706;
+            /* 日式配色 */
+            --bg-color: #fcfaf2;   /* 和紙白 */
+            --sidebar-bg: #f4f1ea; /* 淺米色 */
+            --text-main: #3d3d3d;  /* 墨黑 */
+            --text-sub: #7a7a7a;   /* 銀鼠 */
+            --accent-red: #c92a2a; /* 紅葉色 */
+            --accent-gold: #d4af37;/* 金色 */
+            --border-color: #e0ded5;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         body {
-            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "StHeiti", sans-serif;
+            font-family: "Hiragino Kaku Gothic ProN", "Yu Mincho", "Helvetica Neue", serif;
             background-color: var(--bg-color);
-            color: var(--text-dark);
+            color: var(--text-main);
             margin: 0;
-            padding: 20px;
-            line-height: 1.6;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden; /* 防止整個頁面捲動 */
+            display: flex;
+            flex-direction: row;
         }
 
-        .container {
+        /* 左側選單 (Sidebar) */
+        .sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            overflow-y: auto;
+            flex-shrink: 0;
+        }
+
+        .logo {
+            padding: 0 20px 20px 20px;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: var(--accent-red);
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 15px 25px;
+            cursor: pointer;
+            font-size: 0.95em;
+            color: var(--text-sub);
+            transition: all 0.3s ease;
+            font-family: inherit;
+            border-left: 4px solid transparent;
+        }
+
+        .nav-btn:hover {
+            background-color: rgba(0,0,0,0.03);
+            color: var(--text-main);
+        }
+
+        .nav-btn.active {
+            background-color: #fff;
+            color: var(--text-main);
+            border-left: 4px solid var(--accent-red);
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+
+        /* 右側內容區 (Main Content) */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto; /* 只有內容區可以捲動 */
+            position: relative;
+        }
+
+        /* 內容卡片樣式 */
+        .section {
+            display: none; /* 預設隱藏 */
             max-width: 800px;
             margin: 0 auto;
+            animation: fadeIn 0.4s ease;
         }
 
-        /* 封面設計 */
-        .hero {
-            text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, var(--primary-red), #a61e4d);
-            color: white;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(201, 42, 42, 0.3);
+        .section.active {
+            display: block; /* 啟用時顯示 */
         }
 
-        .hero h1 {
-            margin: 0 0 10px 0;
-            font-size: 2em;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .hero .subtitle {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-
-        .hero .route {
-            margin-top: 20px;
-            font-weight: bold;
-            font-size: 0.9em;
-            background: rgba(255,255,255,0.2);
-            padding: 10px;
-            border-radius: 8px;
-            display: inline-block;
-        }
-
-        /* 卡片設計 */
-        .card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--primary-red);
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-        }
-
-        .time-badge {
-            background-color: var(--text-dark);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 0.9em;
+        h1 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            font-weight: normal;
+            letter-spacing: 2px;
         }
 
         h2 {
-            color: var(--primary-red);
             font-size: 1.4em;
-            margin: 0;
-        }
-
-        h3 {
-            color: var(--text-dark);
-            font-size: 1.1em;
-            margin-top: 20px;
-            margin-bottom: 8px;
-            border-left: 4px solid var(--accent-gold);
-            padding-left: 10px;
-        }
-
-        ul {
-            padding-left: 20px;
-            margin-top: 5px;
-        }
-
-        li {
-            margin-bottom: 5px;
-        }
-
-        .highlight-box {
-            background-color: #fff9db;
-            border: 1px solid #ffe066;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-        }
-
-        .highlight-title {
-            color: var(--accent-gold);
-            font-weight: bold;
-            margin-bottom: 5px;
-            display: block;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
-            font-size: 0.9em;
-            color: var(--text-light);
-            background: #f8f9fa;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-        }
-
-        .budget-summary {
-            background-color: var(--text-dark);
-            color: white;
-            padding: 20px;
-            border-radius: 12px;
-        }
-        
-        .budget-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            border-bottom: 1px solid #555;
-            padding-bottom: 5px;
-        }
-
-        .total {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #ffec99;
-            text-align: right;
-            margin-top: 15px;
-        }
-
-        @media (max-width: 600px) {
-            .hero h1 { font-size: 1.5em; }
-            .card { padding: 20px; }
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-
-    <!-- 投影片 1：封面 -->
-    <div class="hero">
-        <h1>秋之近江：滋賀縣紅葉與美食散策</h1>
-        <div class="subtitle">步行賞楓、近江牛名店、琵琶湖絕景、高 CP 值 JR 路線</div>
-        <div class="route">新大阪 ⮕ 比叡山坂本 ⮕ 石山 ⮕ 新大阪</div>
-        <div style="margin-top:10px; font-size: 0.8em;">日期：明天</div>
-    </div>
-
-    <!-- 投影片 2：交通 -->
-    <div class="card">
-        <div class="card-header">
-            <span class="time-badge">09:00 - 10:00</span>
-            <h2>交通出發 & 琵琶湖晨景</h2>
-        </div>
-        <p><strong>路線：</strong><br>
-        1. [JR 新大阪站] 搭乘 JR 京都線（新快速） 至 [JR 京都站]。<br>
-        2. 站內轉乘 JR 湖西線（往近江舞子/堅田方向），至 [JR 比叡山坂本站] 下車。</p>
-        <p>💰 <strong>交通費：</strong> 單程 990 日圓（最省錢且快速）。</p>
-        
-        <div class="highlight-box">
-            <span class="highlight-title">💡 琵琶湖觀景 Tips (1)：去程電車</span>
-            <ul>
-                <li><strong>位置：</strong> 早上從京都前往「比叡山坂本」時。</li>
-                <li><strong>秘訣：</strong> 請坐在車廂的<strong>「右側」</strong>座位。</li>
-                <li><strong>景色：</strong> 高架鐵路視野極佳，窗外直接就是廣闊的琵琶湖。</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- 投影片 3：午餐 -->
-    <div class="card">
-        <div class="card-header">
-            <span class="time-badge">10:15 - 11:45</span>
-            <h2>午餐：延曆寺御用蕎麥麵</h2>
-        </div>
-        <h3>本家鶴喜蕎麥麵 (本家鶴喜そば 本店)</h3>
-        <p>創立於享保年間（約 300 年歷史），擁有登錄有形文化財的日式建築。堅持手工製作。</p>
-        <ul>
-            <li><strong>手打蕎麥麵定食：</strong> 麵條香氣濃郁，口感彈牙。</li>
-            <li><strong>天婦羅蕎麥麵：</strong> 炸蝦外皮酥脆，與熱湯麵是絕配。</li>
-        </ul>
-        <div class="info-grid">
-            <div>📍 地址：滋賀県大津市坂本4-8-7</div>
-            <div>🚶 交通：從 JR 比叡山坂本站步行 12 分鐘</div>
-            <div>⏰ 時間：10:00～17:30</div>
-        </div>
-    </div>
-
-    <!-- 投影片 4：紅葉景點 1 -->
-    <div class="card">
-        <div class="card-header">
-            <span class="time-badge">12:00 - 13:45</span>
-            <h2>紅葉隧道與神之使者</h2>
-        </div>
-        <h3>景點：日吉大社 (Hiyoshi Taisha)</h3>
-        <p>全國 3800 多座日吉、山王神社的總本宮，滋賀首屈一指的賞楓名所。</p>
-        <ul>
-            <li><strong>紅葉隧道：</strong> 參道兩旁楓樹交織，如同一條紅色隧道。</li>
-            <li><strong>山王鳥居：</strong> 獨特造型的鳥居與上方楓葉的合影。</li>
-            <li><strong>大宮橋：</strong> 日本最古老的石橋之一。</li>
-        </ul>
-        <div class="info-grid">
-            <div>🎫 門票：300 日圓</div>
-            <div>🚶 下一站：步行回車站，搭 JR 至 [JR 石山站] (車資 330 円)</div>
-        </div>
-    </div>
-
-    <!-- 投影片 5：小食 & 散步 -->
-    <div class="card">
-        <div class="card-header">
-            <span class="time-badge">14:45 - 15:15</span>
-            <h2>特色小食 & 琵琶湖散步</h2>
-        </div>
-        
-        <div class="highlight-box">
-            <span class="highlight-title">🌊 琵琶湖體驗 (2)：石山步行路段</span>
-            <p>從 JR 石山站走到石山寺的路上，是沿著<strong>「瀨田川」</strong>走的。這是琵琶湖唯一的流出河口，水面寬闊，景色跟湖幾乎一樣，是最道地的水岸風光。</p>
-        </div>
-
-        <h3>推薦小食</h3>
-        <ul>
-            <li><strong>石餅 (叶 匠壽庵)：</strong> 紅白相間的麻糬覆蓋紅豆泥。</li>
-            <li><strong>炸みたらし (門前商店街)：</strong> 現炸醬油糰子，外酥內軟。</li>
-        </ul>
-    </div>
-
-    <!-- 投影片 6：紅葉景點 2 -->
-    <div class="card">
-        <div class="card-header">
-            <span class="time-badge">15:15 - 16:45</span>
-            <h2>紫式部的靈感之地</h2>
-        </div>
-        <h3>景點：石山寺 (Ishiyama-dera)</h3>
-        <p>日本遺產，《源氏物語》發源地。深紅楓葉與巨大的天然硅灰石形成強烈對比。</p>
-        <ul>
-            <li><strong>多寶塔 (國寶)：</strong> 日本最古老的多寶塔，被紅葉包圍。</li>
-            <li><strong>天然硅灰石：</strong> 奇石與紅葉的同框。</li>
-        </ul>
-        <div class="info-grid">
-            <div>🎫 門票：600 日圓</div>
-            <div>⏰ 時間：08:00～16:30</div>
-        </div>
-    </div>
-
-    <!-- 投影片 7：晚餐 -->
-    <div class="card">
-        <div class="card-header">
-            <span class="time-badge">17:15 - 19:15</span>
-            <h2>晚餐：近江牛料理</h2>
-        </div>
-        <h3>近江牛專門店 れすとらん松喜屋</h3>
-        <p>明治時代創業的老字號，推廣近江牛的先驅。</p>
-        <ul>
-            <li><strong>近江牛壽喜燒：</strong> 秘製醬汁，肉質入口即化。</li>
-            <li><strong>近江牛排重：</strong> 鋪滿高級牛肉的豪華便當。</li>
-        </ul>
-        <div class="info-grid">
-            <div>📍 地址：滋賀県大津市唐橋町14-17</div>
-            <div>🚶 交通：從石山寺往回步行約 15 分鐘</div>
-            <div>💰 備註：預算有限可改至 JR 站旁「焼肉 伽る」</div>
-        </div>
-    </div>
-
-    <!-- 投影片 8：回程 -->
-    <div class="card">
-        <div class="card-header">
-            <span class="time-badge">19:30 - 20:30</span>
-            <h2>返回大阪</h2>
-        </div>
-        <p>1. 從餐廳步行回 [JR 石山站]（約 10-12 分鐘）。<br>
-        2. 搭乘 JR 琵琶湖線（新快速） 直達 [JR 新大阪站]。</p>
-        <p>💰 <strong>交通費：</strong> 單程 990 日圓。</p>
-    </div>
-
-    <!-- 投影片 9：預算 -->
-    <div class="card budget-summary">
-        <h2 style="color:white; border-bottom: 1px solid #777; padding-bottom:10px;">預算總結 (不含餐費)</h2>
-        
-        <div style="margin-top: 20px;">
-            <div class="budget-row">
-                <span>🚅 交通 (全程 JR)</span>
-                <span>2,310 円</span>
-            </div>
-            <div style="font-size: 0.8em; color: #ccc; margin-bottom: 15px;">新大阪 ↔ 滋賀 (往返) + 當地移動</div>
-            
-            <div class="budget-row">
-                <span>⛩️ 門票 (日吉大社 + 石山寺)</span>
-                <span>900 円</span>
-            </div>
-            
-            <div class="total">
-                總計：3,210 円 / 人
-            </div>
-            <div style="text-align: right; font-size: 0.8em; color: #ccc; margin-top:5px;">
-                *餐費依個人選擇另計 (預計午餐 ¥2,000 / 晚餐 ¥6,000)
-            </div>
-        </div>
-    </div>
-    
-    <div style="text-align: center; color: #888; margin-top: 40px; font-size: 0.9em;">
-        祝您旅途愉快！
-    </div>
-
-</div>
-
-</body>
-</html>
+            color: var(--accent-red);
+            margin-top: 0;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px
