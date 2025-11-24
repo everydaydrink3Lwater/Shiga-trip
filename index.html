@@ -252,6 +252,30 @@
                 font-size: 1.5rem;
             }
         }
+         /* 新增圖片樣式 */
+        .slide-img-container {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .slide-img {
+            width: 100%;
+            height: 200px; /* 固定高度保持整齊 */
+            object-fit: cover; /* 裁切圖片填滿 */
+            border-radius: 8px; /* 圓角 */
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* 手機版圖片改為直向排列 */
+        @media (max-width: 768px) {
+            .slide-img-container {
+                flex-direction: column;
+            }
+            .slide-img {
+                height: 180px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -410,29 +434,46 @@
             <p style="font-size: 0.9rem;">🎫 門票：600 日圓 | 開放至 16:30</p>
         </div>
 
-        <!-- Slide 7: Dinner -->
+       <!-- Slide 7: Dinner -->
         <div class="slide">
             <div class="slide-header">
-                <h2 class="slide-title">晚餐：近江牛名店</h2>
+                <h2 class="slide-title">晚餐：近江牛料理</h2>
                 <span class="slide-subtitle">17:15 - 19:15</span>
             </div>
-            <div class="info-card">
-                <h3 style="border-bottom: 1px solid #eee; padding-bottom:10px; margin-bottom:15px;">れすとらん松喜屋 (Matsukijya)</h3>
-                <p>明治時代創業，將「近江牛」推廣至全日本的先驅。</p>
-                <div style="margin-top: 15px;">
-                    <p><strong>🥘 推薦菜色：</strong></p>
-                    <ul class="points">
-                        <li>近江牛壽喜燒 (入口即化)</li>
-                        <li>近江牛排重 (大口吃肉的滿足感)</li>
-                    </ul>
-                </div>
+            
+            <!-- 圖片區域 -->
+            <div class="slide-img-container">
+                <img src="https://images.unsplash.com/photo-1559406041-c7d2b2e98690?auto=format&fit=crop&w=600&q=80" alt="和牛壽喜燒" class="slide-img">
+                <img src="https://images.unsplash.com/photo-1612450630328-98e3b3922d4f?auto=format&fit=crop&w=600&q=80" alt="牛排重" class="slide-img">
             </div>
-            <div class="highlight-box">
-                <p style="font-size: 0.9rem; color: #555;">
-                    💡 <strong>預算控制 Tip：</strong><br>
-                    若想節省預算，可改至 JR 石山站旁的「焼肉 伽る」。<br>
-                    松喜屋位於石山寺走回車站的途中（步行約 15 分鐘）。
+
+            <div class="info-card">
+                <h3 style="margin-bottom: 10px; color: var(--accent-red);">近江牛專門店 れすとらん松喜屋</h3>
+                <p style="margin-bottom: 20px; font-size: 0.95rem;">
+                    明治時代創業的老字號，是將「近江牛」推廣至全日本的先驅名店。
                 </p>
+
+                <h4 style="margin-bottom: 10px; border-left: 3px solid var(--text-main); padding-left: 10px;">推薦菜色</h4>
+                <ul class="points">
+                    <li style="margin-bottom: 12px;">
+                        <strong>近江牛壽喜燒 (Sukiyaki)：</strong><br>
+                        使用秘製醬汁，肉質霜降分佈均勻，入口即化。
+                    </li>
+                    <li>
+                        <strong>近江牛排重 (Steak Ju)：</strong><br>
+                        鋪滿高級牛肉的豪華便當盒形式，大口吃肉的滿足感。
+                    </li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <h4 style="margin-bottom: 8px;">基本資料</h4>
+                <ul style="list-style: none; font-size: 0.9rem; line-height: 1.6;">
+                    <li><strong>📍 地址：</strong> 滋賀県大津市唐橋町14-17</li>
+                    <li><strong>🚶 交通：</strong> 從石山寺沿路往回走，步行約 15 分鐘可達（位於石山寺與 JR 石山站中間）。</li>
+                    <li><strong>💰 預算：</strong> 晚餐約 6,000 日圓起。<br>
+                    <span style="color: #666; font-size: 0.85rem;">(若需節省預算，可改至 JR 石山站旁的「焼肉 伽る」)。</span></li>
+                </ul>
             </div>
         </div>
 
@@ -442,15 +483,32 @@
                 <h2 class="slide-title">回程：返回大阪</h2>
                 <span class="slide-subtitle">19:30 - 20:30</span>
             </div>
-            <div class="info-card" style="text-align: center;">
-                <h3>🚆 JR 琵琶湖線 (新快速)</h3>
-                <div style="font-size: 1.5rem; margin: 20px 0; color: var(--text-main);">
-                    JR 石山站 <span style="color: var(--accent-red);">→</span> JR 新大阪站
-                </div>
-                <p>直達不需轉車 | 車程約 45-50 分鐘</p>
-                <p class="price" style="margin-top: 10px;">單程 990 日圓</p>
+
+            <!-- 圖片區域 -->
+            <div class="slide-img-container">
+                <img src="https://images.unsplash.com/photo-1490278917812-78d104593444?auto=format&fit=crop&w=800&q=80" alt="JR電車" class="slide-img" style="object-position: center;">
             </div>
-            <div style="text-align: center; margin-top: 30px;">
+            
+            <div class="info-card">
+                <h3 style="margin-bottom: 15px;">路線細節</h3>
+                <ul class="points" style="line-height: 2;">
+                    <li>
+                        從餐廳步行回 <strong>[JR 石山站]</strong><br>
+                        <span style="color: #666; font-size: 0.9rem;">(約 10-12 分鐘)</span>
+                    </li>
+                    <li>
+                        搭乘 <strong>JR 琵琶湖線（新快速）</strong><br>
+                        直達 <strong>[JR 新大阪站]</strong>
+                    </li>
+                </ul>
+                
+                <div style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; text-align: right;">
+                    <span style="font-size: 0.9rem;">單程交通費：</span>
+                    <span class="price" style="font-size: 1.2rem;">990 日圓</span>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px; color: var(--text-muted);">
                 <p>感謝今天的旅程，祝您晚安 🌙</p>
             </div>
         </div>
@@ -459,38 +517,72 @@
         <div class="slide">
             <div class="slide-header">
                 <h2 class="slide-title">預算總結</h2>
-                <span class="slide-subtitle">每人基本開銷</span>
+                <span class="slide-subtitle">一日遊基本開銷 (不含餐食)</span>
+            </div>
+
+            <!-- 圖片區域 -->
+            <div class="slide-img-container">
+                 <img src="https://images.unsplash.com/photo-1594498653385-d5172c532c00?auto=format&fit=crop&w=800&q=80" alt="日本硬幣" class="slide-img" style="height: 150px;">
             </div>
             
             <div class="info-card">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px dashed #ddd; padding-bottom: 5px;">
-                    <span>🚃 交通費 (全程 JR)</span>
-                    <span class="price">2,310 円</span>
+                <!-- 交通費 -->
+                <h4 style="margin-bottom: 10px; color: var(--text-main);">1. 交通費 (全程 JR + 步行)</h4>
+                <div style="font-size: 0.9rem; color: #555; margin-bottom: 10px; padding-left: 10px; border-left: 2px solid #eee;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                        <span>新大阪 → 比叡山坂本</span>
+                        <span>990 日圓</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                        <span>比叡山坂本 → 石山</span>
+                        <span>330 日圓</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                        <span>石山 → 新大阪</span>
+                        <span>990 日圓</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between;">
+                        <span>當地交通 (步行)</span>
+                        <span>0 日圓</span>
+                    </div>
                 </div>
-                <div style="font-size: 0.85rem; color: #888; margin-bottom: 15px; padding-left: 10px;">
-                    去程 990 + 移動 330 + 回程 990
+                <div style="text-align: right; margin-bottom: 20px; font-weight: bold;">
+                    交通小計：2,310 日圓
                 </div>
 
-                <div style="display: flex; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px dashed #ddd; padding-bottom: 5px;">
-                    <span>🎫 景點門票</span>
-                    <span class="price">900 円</span>
+                <!-- 門票 -->
+                <h4 style="margin-bottom: 10px; color: var(--text-main);">2. 景點門票 (成人)</h4>
+                <div style="font-size: 0.9rem; color: #555; margin-bottom: 10px; padding-left: 10px; border-left: 2px solid #eee;">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:5px;">
+                        <span>日吉大社 (入苑協賛料)</span>
+                        <span>300 日圓</span>
+                    </div>
+                    <div style="display:flex; justify-content:space-between;">
+                        <span>石山寺 (入山料)</span>
+                        <span>600 日圓</span>
+                    </div>
                 </div>
-                <div style="font-size: 0.85rem; color: #888; margin-bottom: 15px; padding-left: 10px;">
-                    日吉大社 300 + 石山寺 600
+                <div style="text-align: right; margin-bottom: 20px; font-weight: bold;">
+                    門票小計：900 日圓
                 </div>
 
-                <div style="display: flex; justify-content: space-between; margin-top: 20px; font-size: 1.2rem; font-weight: bold; color: var(--accent-red);">
-                    <span>總計 (不含餐食)</span>
-                    <span>3,210 円</span>
+                <!-- 總計 -->
+                <div style="background-color: var(--sidebar-bg); padding: 15px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-weight: bold;">基本費用總計 / 人</span>
+                    <span class="price" style="font-size: 1.4rem; color: var(--accent-red);">3,210 日圓</span>
                 </div>
             </div>
 
             <div class="highlight-box">
-                <p><strong>餐費預估：</strong></p>
-                <ul class="points">
-                    <li>午餐：約 1,500 - 2,000 円</li>
-                    <li>晚餐：約 6,000 円 (近江牛)</li>
+                <p><strong>📝 備註：</strong></p>
+                <ul class="points" style="font-size: 0.9rem;">
+                    <li>餐費依個人選擇而定，預計午餐約 1,500-2,000 日圓，晚餐約 6,000 日圓以上 (若吃近江牛)。</li>
+                    <li>交通費以 JR 普通車廂 (含新快速) 票價計算，若持有 ICOCA 卡直接刷卡即可。</li>
                 </ul>
+            </div>
+            
+            <div style="margin-top: 30px; text-align: center; font-family: 'Shippori Mincho', serif;">
+                一天之內體驗了古蹟、紅葉、近江牛以及琵琶湖風光，<br>且交通單純省錢。祝您旅途愉快！
             </div>
         </div>
 
@@ -524,20 +616,22 @@
         // 2. 自動計算「明天」的日期
         function setTomorrowDate() {
             const dateElement = document.getElementById('tomorrowDate');
-            const today = new Date();
-            const tomorrow = new Date(today);
-            tomorrow.setDate(today.getDate() + 1);
+            if(dateElement) {
+                const today = new Date();
+                const tomorrow = new Date(today);
+                tomorrow.setDate(today.getDate() + 1);
 
-            const year = tomorrow.getFullYear();
-            const month = tomorrow.getMonth() + 1;
-            const date = tomorrow.getDate();
-            
-            // 格式化日期：例如 2023年11月24日
-            dateElement.innerText = `日期：${year}年${month}月${date}日`;
+                const year = tomorrow.getFullYear();
+                const month = tomorrow.getMonth() + 1;
+                const date = tomorrow.getDate();
+                
+                // 格式化日期
+                dateElement.innerText = `日期：${year}年${month}月${date}日`;
+            }
         }
 
         // 初始化執行
-        setTomorrowDate();
+        window.onload = setTomorrowDate;
     </script>
 </body>
 </html>
